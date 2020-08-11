@@ -1,15 +1,15 @@
 version: 2
 jobs:
-  - build:
-      docker:
-        - image: circleci/node:10-browsers
-      steps:
-        - checkout
-        - restore_cache:
-            key: app-{{ .Branch }}-{{ checksum "package-lock.json" }}
-        - run: npm install
-        - save_cache:
-            key: app-{{ .Branch }}-{{ checksum "package-lock.json" }}
-            paths:
-              - "node_modules"
-        - run: npm run test:coverage-ci
+  build:
+    docker:
+      - image: circleci/node:10-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: app-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run: npm install
+      - save_cache:
+          key: app-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - "node_modules"
+      - run: npm run test:coverage-ci
