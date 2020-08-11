@@ -1,5 +1,9 @@
-cache-key: &cache-key
+cache_key: &cache_key
   key: app-{{ .Branch }}-{{ checksum "package-lock.json" }}
+save_cache: &save_cache
+  <<: *cache_key
+  paths:
+    - "node_modules"
 version: 2
 jobs:
   test:
@@ -8,12 +12,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          <<: *cache-key
+          <<: *cache_key
       - run: npm install
       - save_cache:
-          <<: *cache-key
-          paths:
-            - "node_modules"
+          <<: *save_cache
       - run: npm run test:coverage-ci
       - store_artifacts:
           path: coverage
@@ -23,12 +25,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          <<: *cache-key
+          <<: *cache_key
       - run: npm install
       - save_cache:
-          <<: *cache-key
-          paths:
-            - "node_modules"
+          <<: *save_cache
       - run: npm run build
       - store_artifacts:
           path: dist/app1
