@@ -1,0 +1,16 @@
+<p>client home works!</p>
+<form [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
+  <label>
+    <input type="text" formControlName="firstName">
+  </label>
+  <label>
+    <input type="text" formControlName="lastName">
+  </label>
+  <button type="submit">submit</button>
+</form>
+<p>
+  Form Status: {{ profileForm.status }}
+  Form Status: {{ profileForm.get('firstName').status }}
+</p>
+
+<button (click)="handleSetValue()">setValue</button>

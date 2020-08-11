@@ -4,8 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
+    "build:staging": "ng build --configuration staging",
     "test": "ng test",
+    "test:coverage": "ng test --no-watch --code-coverage",
+    "test:coverage-ci": "ng test --no-watch --code-coverage --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -19,6 +22,7 @@
     "@angular/platform-browser": "~10.0.6",
     "@angular/platform-browser-dynamic": "~10.0.6",
     "@angular/router": "~10.0.6",
+    "ng-devui": "^9.1.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

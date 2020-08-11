@@ -1,0 +1,5 @@
+<p>post-detail works!</p>
+<ng-container *ngIf="post">
+  <div>{{post.title}}[{{post.author}}]</div>
+</ng-container>
+<app-http-status [status]="status"></app-http-status>

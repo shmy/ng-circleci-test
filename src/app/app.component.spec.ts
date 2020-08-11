@@ -1,5 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {SharedModule} from './shared/shared.module';
+import {RouterModule} from '@angular/router';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -7,6 +9,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [SharedModule.forRoot(), RouterModule.forRoot([])]
     }).compileComponents();
   }));
 
@@ -16,16 +19,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'app1'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('app1');
-  });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('app1 app is running!');
+    expect(compiled.querySelectorAll('d-layout').length).toBe(2);
   });
 });

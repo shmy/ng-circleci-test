@@ -1,3 +1,13 @@
+
+[x] 路由分块懒加载
+[x] http 拦截
+[x] http 状态封装
+[x] 华为 DEVUI
+[ ] AuthService
+[ ] 路由守卫
+[ ] 路由恢复
+[ ] 动态modal
+
 # App1
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
