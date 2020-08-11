@@ -32,6 +32,7 @@ jobs:
       - run: npm run build
       - store_artifacts:
           path: dist/app1
+          destination: /
 workflows:
   version: 2
   test-build-deploy:
