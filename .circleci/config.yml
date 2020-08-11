@@ -1,8 +1,8 @@
 version: 2
 jobs:
-  build:
+  test:
     docker:
-      - image: circleci/node:10-browsers
+      - image: circleci/node:12-browsers
     steps:
       - checkout
       - restore_cache:
@@ -15,3 +15,20 @@ jobs:
       - run: npm run test:coverage-ci
       - store_artifacts:
           path: coverage
+  build:
+    docker:
+      - image: circleci/node:12-browsers
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run build
+      - store_artifacts:
+          path: dist
+workflows:
+  version: 2
+  test-build-deploy:
+    jobs:
+      - test
+      - build
+          requires:
+            - test
