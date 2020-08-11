@@ -1,4 +1,4 @@
-cache-key: &cache-key:
+cache-key: &cache-key
   key: app-{{ .Branch }}-{{ checksum "package-lock.json" }}
 version: 2
 jobs:
