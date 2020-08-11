@@ -1,3 +1,5 @@
+cache-key: &cache-key:
+  key: app-{{ .Branch }}-{{ checksum "package-lock.json" }}
 version: 2
 jobs:
   test:
@@ -6,10 +8,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: app-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          <<: *cache-key
       - run: npm install
       - save_cache:
-          key: app-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          <<: *cache-key
           paths:
             - "node_modules"
       - run: npm run test:coverage-ci
@@ -20,7 +22,13 @@ jobs:
       - image: circleci/node:12-browsers
     steps:
       - checkout
+      - restore_cache:
+          <<: *cache-key
       - run: npm install
+      - save_cache:
+          <<: *cache-key
+          paths:
+            - "node_modules"
       - run: npm run build
       - store_artifacts:
           path: dist
